@@ -5,8 +5,10 @@ import com.bruce.mscdept.Entity.Student;
 import com.bruce.mscdept.Repository.EmployeeRepository;
 import com.bruce.mscdept.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/mani")
+@RequestMapping("/api")
 public class MyController {
     @Autowired
     private StudentRepository studentRepository;
@@ -52,5 +54,11 @@ public class MyController {
         List<Employee> list=employeeRepository.findAll();
         model.addAttribute("nameList",list);
         return "display";
+    }
+
+
+    @GetMapping(path = "/hello")
+    public ResponseEntity<String> sayHello(){
+        return ResponseEntity.ok().body("Hello, Maheshwari");
     }
 }
